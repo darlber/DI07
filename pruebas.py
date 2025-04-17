@@ -9,8 +9,8 @@ script para probar la generación de informes con pyreportjasper antes de implem
 
 def processing():
     REPORTS_DIR = os.path.join(os.path.abspath(os.path.dirname(__file__)), "Informes")
-    entrada = os.path.join(REPORTS_DIR, "Informe_Albaran_filtrar_pedido.jrxml")
-    salida = os.path.join(REPORTS_DIR, "Informe_Albaran_filtrar_pedido")
+    entrada = os.path.join(REPORTS_DIR, "Informe_Ventas.jrxml")
+    salida = os.path.join(REPORTS_DIR, "Informe_Ventas")
     pyreportjasper = PyReportJasper()
 
     # Crear instancia de la clase DB

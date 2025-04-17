@@ -21,11 +21,7 @@ class Reportes(QWidget, Ui_MainWindow):
         self.btnSelectPDF.clicked.connect(self.seleccionar_ruta_pdf)
         self.btnGenerar.clicked.connect(self.generar_informe)
 
-        # Rutas y archivos
-        # eliminar estas 3 lineas antes de subir
-        self.ruta_jrxml = "C:/Users/darlb/Desktop/DI07/Informes"
-        self.ruta_pdf = "C:/Users/darlb/Desktop/DI07/Informes/PDF"
-        self.cargar_archivos_jrxml()
+
 
     def seleccionar_ruta_jrxml(self):
         ruta = QFileDialog.getExistingDirectory(self, "Seleccionar carpeta con JRXML")

@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Created with Jaspersoft Studio version 7.0.2.final using JasperReports Library version 6.21.0  -->
-<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Blank_A4" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="3e725254-68df-466b-9097-261595bbeeaf">
+<!-- Created with Jaspersoft Studio version 7.0.2.final using JasperReports Library version 6.19.0  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Blank_A4" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="3e725254-68df-466b-9097-261595bbeeaf">
 	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="Fabrica"/>
 	<property name="com.jaspersoft.studio.unit." value="pixel"/>
@@ -54,7 +55,7 @@
 			</staticText>
 			<image onErrorType="Blank">
 				<reportElement x="10" y="0" width="80" height="60" uuid="dd383fda-0909-4c36-b6a0-6dcf22d8b34e"/>
-				<imageExpression><![CDATA["S Letter.png"]]></imageExpression>
+				<imageExpression><![CDATA["Informes/logo.png"]]></imageExpression>
 			</image>
 		</band>
 	</title>

@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with Jaspersoft Studio version 7.0.2.final using JasperReports Library version 6.19.0  -->
-<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Listado_clientes" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="80519013-e829-455c-9670-01cdd8b95d61">
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Listado_clientes" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="80519013-e829-455c-9670-01cdd8b95d61">
 	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="sqlite3"/>
 	<queryString language="SQL">
@@ -156,7 +157,7 @@ ORDER BY cliente_nombre ASC, p.ID_Pedido ASC]]>
 			</staticText>
 			<image onErrorType="Blank">
 				<reportElement x="10" y="0" width="80" height="60" uuid="8df1ea76-8f77-421e-a95b-015d374b4eaf"/>
-				<imageExpression><![CDATA["S Letter.png"]]></imageExpression>
+				<imageExpression><![CDATA["Informes/logo.png"]]></imageExpression>
 			</image>
 			<textField pattern="MMM d, yyyy">
 				<reportElement x="460" y="0" width="95" height="30" uuid="385ed60c-c959-4dab-bdd6-e4b4b2d979ef"/>

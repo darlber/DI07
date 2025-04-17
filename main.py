@@ -16,6 +16,7 @@ class Reportes(QWidget, Ui_MainWindow):
 
         self.DB = DB()
         self.report_generator = ReportGenerator(self.DB)
+        self.lineEditParam.setEnabled(False)
         
         # Botones
         self.btnSelectJRXML.clicked.connect(self.seleccionar_ruta_jrxml)
@@ -70,20 +71,20 @@ class Reportes(QWidget, Ui_MainWindow):
 
         try:
             self.report_generator.generar_informe(ruta_jrxml, ruta_salida, parametros)
-            self.textEditOutput.append(
-                f"Informe generado con éxito en: {ruta_salida}.pdf"
-            )
-            print(f"Informe generado con éxito en: {ruta_salida}.pdf")
+            ruta_salida_pdf = f"{ruta_salida}.pdf"  
+            if os.path.exists(ruta_salida_pdf):
+                self.textEditOutput.append(f"Informe generado exitosamente: {ruta_salida_pdf}")
+            else:
+                self.textEditOutput.append("Error: El archivo no se generó.")
+
         except Exception as e:
             self.textEditOutput.append(f"Error al generar el informe: {str(e)}")
             QMessageBox.critical(
                 self, "Error", f"No se pudo generar el informe: {str(e)}"
             )
 
-
 if __name__ == "__main__":
     app = QApplication(sys.argv)
     mi_app = Reportes()
     mi_app.show()
-
     sys.exit(app.exec())

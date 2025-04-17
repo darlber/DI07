@@ -18,8 +18,7 @@ class Reportes(QWidget, Ui_MainWindow):
 
         self.DB = DB()
         self.report_generator = ReportGenerator(self.DB)
-        self.probarConnectionDatabase()
-   
+        
         # Botones
         self.btnSelectJRXML.clicked.connect(self.seleccionar_ruta_jrxml)
         self.btnSelectPDF.clicked.connect(self.seleccionar_ruta_pdf)
@@ -30,23 +29,6 @@ class Reportes(QWidget, Ui_MainWindow):
         self.ruta_pdf = "C:/Users/darlb/Desktop/DI07/Informes/PDF"
         self.cargar_archivos_jrxml()
 
-
-    def probarConnectionDatabase(self):
-        try:
-            path_db = self.DB.obtener_conexion_sqlite()["data_file"]
-            if os.path.isfile(path_db):
-                self.textEditOutput.append("Conexión a la base de datos establecida.")
-            else:
-                self.textEditOutput.append(
-                    "No se encontró el archivo de base de datos."
-                )
-        except Exception as e:
-            self.textEditOutput.append(
-                f"Error al conectar a la base de datos: {str(e)}"
-            )
-            QMessageBox.critical(
-                self, "Error", f"No se pudo conectar a la base de datos: {str(e)}"
-            )
 
     def seleccionar_ruta_jrxml(self):
         ruta = QFileDialog.getExistingDirectory(self, "Seleccionar carpeta con JRXML")
@@ -92,6 +74,7 @@ class Reportes(QWidget, Ui_MainWindow):
             self.textEditOutput.append(
                 f"Informe generado con éxito en: {ruta_salida}.pdf"
             )
+            print(f"Informe generado con éxito en: {ruta_salida}.pdf")
         except Exception as e:
             self.textEditOutput.append(f"Error al generar el informe: {str(e)}")
             QMessageBox.critical(

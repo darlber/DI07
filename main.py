@@ -2,8 +2,6 @@ import sys
 import os
 
 from PySide6.QtWidgets import QFileDialog, QWidget, QApplication, QMessageBox, QLineEdit
-import pyreportjasper
-from platform import python_version
 
 from Control.Report_gen import ReportGenerator
 from Control.SQLite_Database import DB
@@ -25,6 +23,7 @@ class Reportes(QWidget, Ui_MainWindow):
         self.btnGenerar.clicked.connect(self.generar_informe)
 
         # Rutas y archivos
+        #eliminar estas 3 lineas antes de subir
         self.ruta_jrxml = "C:/Users/darlb/Desktop/DI07/Informes"
         self.ruta_pdf = "C:/Users/darlb/Desktop/DI07/Informes/PDF"
         self.cargar_archivos_jrxml()

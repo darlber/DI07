@@ -129,17 +129,6 @@ class Ui_MainWindow(object):
 
         self.layoutParam = QHBoxLayout()
         self.layoutParam.setObjectName(u"layoutParam")
-        self.labelParam = QLabel(MainWindow)
-        self.labelParam.setObjectName(u"labelParam")
-        self.labelParam.setFont(font1)
-
-        self.layoutParam.addWidget(self.labelParam)
-
-        self.lineEditParam = QLineEdit(MainWindow)
-        self.lineEditParam.setObjectName(u"lineEditParam")
-        self.lineEditParam.setFont(font1)
-
-        self.layoutParam.addWidget(self.lineEditParam)
 
 
         self.verticalLayout.addLayout(self.layoutParam)
@@ -174,7 +163,7 @@ class Ui_MainWindow(object):
         self.labelPDF.setText(QCoreApplication.translate("MainWindow", u"Ruta PDF:", None))
         self.btnSelectPDF.setText(QCoreApplication.translate("MainWindow", u"Seleccionar carpeta", None))
         self.labelSelectReport.setText(QCoreApplication.translate("MainWindow", u"Informe a generar:", None))
-        self.labelParam.setText(QCoreApplication.translate("MainWindow", u"Par\u00e1metro (cliente o n\u00ba pedido):", None))
+    
         self.btnGenerar.setText(QCoreApplication.translate("MainWindow", u"Generar informe PDF", None))
         self.textEditOutput.setPlaceholderText(QCoreApplication.translate("MainWindow", u"Mensajes del sistema...", None))
     # retranslateUi

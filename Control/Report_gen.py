@@ -4,8 +4,9 @@ import pyreportjasper
 from Control.SQLite_Database import DB
 
 class ReportGenerator:
-    def __init__(self, db):
-        self.db = db
+    def __init__(self):
+        self.db = DB()
+        print("conexion sqlite creada")
         self.param_config = {
             # Configuración especial para cada tipo de informe
             "Listado_clientes": {
@@ -42,14 +43,15 @@ class ReportGenerator:
             
             # Generar el informe
             conexion = self.db.obtener_conexion_sqlite()
+            print("conexion sqlite creada")
             jasper = pyreportjasper.PyReportJasper()
 
             jasper.process(
                 input_file=ruta_jrxml,
                 output_file=ruta_salida,
                 format_list=["pdf"],
-                parameters=parametros or {},  # Asegurar que no sea None
-                db_connection=conexion
+                db_connection=conexion,
+                locale='es_ES'
             )
             
             # Verificar si el archivo de salida ya existe
@@ -61,66 +63,3 @@ class ReportGenerator:
         except Exception as e:
             return False, f"Error al generar informe: {str(e)}"
             
-            
-    def obtener_opciones_desde_bd(self, consulta, formato):
-        """Obtiene opciones para combobox desde la base de datos"""
-        try:
-            conexion = self.db.obtener_conexion_sqlite()
-            jasper = pyreportjasper.PyReportJasper()
-            result = jasper.execute_query(conexion, consulta)
-            return [formato(row) for row in result]
-        except Exception as e:
-            QMessageBox.warning(None, "Error", f"No se pudieron cargar las opciones: {str(e)}")
-            return []
-
-    def solicitar_parametros(self, nombre_informe, parametros_reales):
-        """Solicita parámetros al usuario basado en la configuración"""
-        parametros = {}
-        
-        # Obtener configuración especial para este informe
-        config_especial = self.param_config.get(nombre_informe, {})
-        
-        for param in parametros_reales:
-            if param in config_especial:
-                # Parámetro con configuración especial
-                config = config_especial[param]
-                
-                if config["tipo"] == "combo":
-                    # Obtener opciones desde la base de datos
-                    opciones = self.obtener_opciones_desde_bd(
-                        config["consulta"], 
-                        config["formato"]
-                    )
-                    
-                    if not opciones:
-                        return None  # Cancelar si no hay opciones
-                    
-                    # Mostrar diálogo para seleccionar
-                    combo = QComboBox()
-                    combo.addItems(opciones)
-                    
-                    dialog = QInputDialog()
-                    dialog.setComboBox(combo)
-                    dialog.setWindowTitle(config["titulo"])
-                    dialog.setLabelText(f"Seleccione {param}:")
-                    
-                    if dialog.exec():
-                        # Extraer el ID del valor seleccionado (primero antes del '-')
-                        valor_seleccionado = combo.currentText()
-                        valor = valor_seleccionado.split(" - ")[0]
-                        parametros[param] = valor
-                    else:
-                        return None  # Usuario canceló
-            else:
-                # Parámetro genérico (texto libre)
-                valor, ok = QInputDialog.getText(
-                    None,
-                    f"Parámetro requerido",
-                    f"Ingrese valor para {param}:"
-                )
-                if ok:
-                    parametros[param] = valor
-                else:
-                    return None  # Usuario canceló
-        
-        return parametros

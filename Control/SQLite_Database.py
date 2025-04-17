@@ -33,15 +33,3 @@ class DB:
         except Exception as e:
             print("Error al configurar la conexión SQLite:", str(e))
             raise
-    def obtener_parametros_informe(self, ruta_jrxml):
-        """Obtiene los parámetros requeridos por un informe JRXML"""
-        try:
-            self.jasper.config(input_file=ruta_jrxml)
-            return self.jasper.list_report_params()
-        except Exception as e:
-            raise Exception(f"Error al leer parámetros del informe: {str(e)}")
-        
-    def execute_query(self, connection_config, query):
-        """Ejecuta una consulta SQL y retorna los resultados"""
-        self.jasper.db_connection = connection_config
-        return self.jasper.execute_sql(query)

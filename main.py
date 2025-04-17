@@ -4,7 +4,6 @@ import os
 from PySide6.QtWidgets import QFileDialog, QWidget, QApplication, QMessageBox, QLineEdit
 
 from Control.Report_gen import ReportGenerator
-from Control.SQLite_Database import DB
 from Vista.ui_main import Ui_MainWindow
 
 
@@ -13,9 +12,8 @@ class Reportes(QWidget, Ui_MainWindow):
     def __init__(self):
         super().__init__()
         self.setupUi(self)
-
-        self.DB = DB()
-        self.report_generator = ReportGenerator(self.DB)
+    
+        self.report_generator = ReportGenerator()
         self.lineEditParam.setEnabled(False)
         
         # Botones

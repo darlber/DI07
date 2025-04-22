@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 7.0.2.final using JasperReports Library version 6.19.0  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Blank_A4" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="3e725254-68df-466b-9097-261595bbeeaf">
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="Fabrica"/>
+	<property name="com.jaspersoft.studio.unit." value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.pageHeight" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.pageWidth" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.topMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.bottomMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.leftMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.rightMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.columnWidth" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.columnSpacing" value="pixel"/>
+	<queryString language="SQL">
+		<![CDATA[SELECT 
+            c.ID_Cliente,
+            c.Nombre AS Cliente,
+            strftime('%m-%Y', p.Fecha_Pedido) AS Mes,
+            SUM(dp.Unidades) AS Total_Articulos_Vendidos
+        FROM 
+            clientes c
+        JOIN 
+            pedidos p ON c.ID_Cliente = p.ID_Cliente
+        JOIN 
+            detalle_pedidos dp ON p.ID_Pedido = dp.ID_Pedido
+        GROUP BY 
+            c.ID_Cliente, c.Nombre, strftime('%Y-%m', p.Fecha_Pedido)
+        ORDER BY 
+            p.Fecha_Pedido ASC]]>
+	</queryString>
+	<field name="ID_Cliente" class="java.lang.Integer"/>
+	<field name="Cliente" class="java.lang.String"/>
+	<field name="Mes" class="java.lang.String"/>
+	<field name="Total_Articulos_Vendidos" class="java.lang.Integer"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="102">
+			<staticText>
+				<reportElement x="0" y="10" width="800" height="30" uuid="a1b2c3d4-e5f6-7890-abcd-ef1234567890"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="16" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Total de Artículos Vendidos por Cliente por Mes]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="60" width="100" height="22" uuid="4f9c8418-6143-4adc-8690-d7b326c6394a"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[SumiMetálicos, S.L]]></text>
+			</staticText>
+			<image onErrorType="Blank">
+				<reportElement x="10" y="0" width="80" height="60" uuid="dd383fda-0909-4c36-b6a0-6dcf22d8b34e"/>
+				<imageExpression><![CDATA["Informes/logo.png"]]></imageExpression>
+			</image>
+		</band>
+	</title>
+	<columnHeader>
+		<band height="20">
+			<property name="com.jaspersoft.studio.layout" value="com.jaspersoft.studio.editor.layout.HorizontalRowLayout"/>
+			<staticText>
+				<reportElement x="0" y="0" width="268" height="20" uuid="e2344b94-8ba0-4282-a418-e5283ca2c94c">
+					<property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
+				</reportElement>
+				<textElement>
+					<font size="11" isBold="true"/>
+					<paragraph leftIndent="5"/>
+				</textElement>
+				<text><![CDATA[Cliente]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="268" y="0" width="267" height="20" uuid="01b7617f-f5a7-47c8-9735-663cefeb0128"/>
+				<textElement>
+					<font size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Mes]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="535" y="0" width="267" height="20" uuid="e8e95ce2-e7dd-4fc7-8856-6f0e517da893">
+					<property name="com.jaspersoft.studio.unit.rightIndent" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Right">
+					<font size="11" isBold="true"/>
+					<paragraph rightIndent="5"/>
+				</textElement>
+				<text><![CDATA[Total Vendido]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="20">
+			<property name="com.jaspersoft.studio.layout" value="com.jaspersoft.studio.editor.layout.HorizontalRowLayout"/>
+			<frame>
+				<reportElement x="0" y="0" width="802" height="20" uuid="61981ad0-34b7-4500-b6ee-d350541ae546"/>
+				<box>
+					<pen lineWidth="0.5" lineStyle="Solid"/>
+				</box>
+				<textField>
+					<reportElement x="0" y="0" width="268" height="20" uuid="f08da5c4-4185-4af2-833d-cd8adfa9e8fc">
+						<property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
+					</reportElement>
+					<textElement>
+						<font size="10"/>
+						<paragraph leftIndent="5"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{Cliente}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="268" y="0" width="267" height="20" uuid="aaac5bde-1d7f-46be-9dc6-ca3db3d28a42"/>
+					<textElement>
+						<font size="10"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{Mes}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="535" y="1" width="267" height="19" uuid="cbe231a0-ce5c-454a-a145-f80fab89e955">
+						<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="19ac87cf-45fd-4c73-8833-8d7ce7fcaca6"/>
+						<property name="com.jaspersoft.studio.unit.rightIndent" value="px"/>
+					</reportElement>
+					<textElement textAlignment="Right">
+						<paragraph rightIndent="5"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{Total_Articulos_Vendidos}]]></textFieldExpression>
+				</textField>
+			</frame>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="26" splitType="Stretch">
+			<frame>
+				<reportElement mode="Opaque" x="0" y="0" width="802" height="26" forecolor="#736343" backcolor="#F2EBDF" uuid="d0359bdd-f445-4910-b756-4054651a942b">
+					<property name="com.jaspersoft.studio.layout" value="com.jaspersoft.studio.editor.layout.FreeLayout"/>
+				</reportElement>
+				<box>
+					<pen lineColor="#D0B48E"/>
+				</box>
+				<staticText>
+					<reportElement x="0" y="0" width="560" height="26" uuid="814f954b-e5eb-482c-b4ea-ef6bbb5da77d"/>
+					<textElement textAlignment="Left" verticalAlignment="Middle">
+						<font isItalic="true"/>
+					</textElement>
+					<text><![CDATA[Este gráfico muestra el total de artículos vendidos por cliente y mes.]]></text>
+				</staticText>
+				<textField>
+					<reportElement x="700" y="0" width="71" height="26" uuid="34385c49-da64-4db4-bb03-8b64599a450f"/>
+					<textElement textAlignment="Right" verticalAlignment="Middle"/>
+					<textFieldExpression><![CDATA["Página " + $V{PAGE_NUMBER}]]></textFieldExpression>
+				</textField>
+				<textField evaluationTime="Report">
+					<reportElement x="771" y="0" width="30" height="26" uuid="d75678de-caa6-4418-9daf-6cfadfb12fc4"/>
+					<textElement textAlignment="Left" verticalAlignment="Middle"/>
+					<textFieldExpression><![CDATA[" de " + $V{PAGE_NUMBER}]]></textFieldExpression>
+				</textField>
+			</frame>
+		</band>
+	</pageFooter>
+	<summary>
+		<band height="304" splitType="Stretch">
+			<barChart>
+				<chart evaluationTime="Report">
+					<reportElement x="0" y="68" width="802" height="236" uuid="a66ddddf-5da0-4d05-a2fd-64ad1d82a205"/>
+					<chartTitle/>
+					<chartSubtitle/>
+					<chartLegend/>
+				</chart>
+				<categoryDataset>
+					<categorySeries>
+						<seriesExpression><![CDATA[$F{Cliente}]]></seriesExpression>
+						<categoryExpression><![CDATA[$F{Mes}]]></categoryExpression>
+						<valueExpression><![CDATA[$F{Total_Articulos_Vendidos}]]></valueExpression>
+					</categorySeries>
+				</categoryDataset>
+				<barPlot>
+					<plot/>
+					<itemLabel/>
+					<categoryAxisFormat>
+						<axisFormat labelColor="#000000" tickLabelColor="#000000" axisLineColor="#000000"/>
+					</categoryAxisFormat>
+					<valueAxisFormat>
+						<axisFormat labelColor="#000000" tickLabelColor="#000000" axisLineColor="#000000"/>
+					</valueAxisFormat>
+				</barPlot>
+			</barChart>
+		</band>
+	</summary>
+</jasperReport>
